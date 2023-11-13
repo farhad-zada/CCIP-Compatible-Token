@@ -1,0 +1,33 @@
+{
+  "name": "ccip-token",
+  "version": "1.0.0",
+  "description": "CCIP token (ccip-token) can be used to create a token that is compatible to be transferred between different blockchain networks using Cross-Chain Interoperability Protocol of Chainlink.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farhad-zada/CCIP-Compatible-Token.git"
+  },
+  "keywords": [
+    "metafluence",
+    "solidity",
+    "token"
+  ],
+  "author": "Farhad Zada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farhad-zada/CCIP-Compatible-Token/issues"
+  },
+  "homepage": "https://github.com/farhad-zada/CCIP-Compatible-Token#readme",
+  "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^4.9.3",
+    "dotenv": "^16.3.1",
+    "hardhat": "^2.19.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@openzeppelin/hardhat-upgrades": "^2.3.3"
+  }
+}
