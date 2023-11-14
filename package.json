@@ -4,7 +4,9 @@
   "description": "CCIP token (ccip-token) can be used to create a token that is compatible to be transferred between different blockchain networks using Cross-Chain Interoperability Protocol of Chainlink.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive --exit"
+    "test": "mocha --recursive --exit", 
+    "dp-bsc": "npx hardhat run --network bsc scripts/metafluenceCCIP.deploy.js",
+    "dp-test": "npx hardhat run --network tbsc scripts/metafluenceCCIP.deploy.js"
   },
   "repository": {
     "type": "git",

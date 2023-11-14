@@ -8,6 +8,50 @@ For this first we need a token contract that is compatible for this purpose. Let
 2. Add `mint()` function
 3. Add authorisation, in our case `admin{}` modifier
 
-```shell
+# Deploying Metafluence CCIP
 
+To deploy Metafluence CCIP compatible upgrade (with features above added) we need to follow the steps below.
+
+1. Firstly we need to install dependencies
+
+```shell
+npm install
+```
+
+2. Then we need to compile contracts
+
+```shell
+npx hardhat compile
+```
+
+3. Finally we can deploy contracts to your desired blockchain by following command
+
+- Binance Smart Chain
+
+```sehll
+npx hardhat run --network bsc scripts/metafluenceCCIP.deploy.js
+```
+
+or
+
+```shell
+npm run dp-bsc
+```
+
+- BNB testnet
+
+```shell
+npx hardhat run --network tbsc scripts/metafluenceCCIP.deploy.js
+```
+
+or
+
+```shell
+npm run dp-test
+```
+
+- Hardhat local
+
+```shell
+npx hardhat run scripts/metafluenceCCIP.deploy.js
 ```

@@ -5,7 +5,19 @@ import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
-contract CCIPToken is Initializable, ERC20Upgradeable, OwnableUpgradeable {
+contract MetafluenceCCIP is
+    Initializable,
+    ERC20Upgradeable,
+    OwnableUpgradeable
+{
+    mapping(address => bool) public admins;
+    address[] public adminsList;
+
+    modifier isAdmin() {
+        require(admins[msg.sender], "meto: not admin");
+        _;
+    }
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() initializer {}
 
@@ -13,6 +25,7 @@ contract CCIPToken is Initializable, ERC20Upgradeable, OwnableUpgradeable {
         __ERC20_init("Metafluence", "METO");
         __Ownable_init();
         _mint(msg.sender, 5_000_000_000 * 10 ** decimals());
+        admins[msg.sender] = true;
     }
 
     function _beforeTokenTransfer(
@@ -25,6 +38,28 @@ contract CCIPToken is Initializable, ERC20Upgradeable, OwnableUpgradeable {
 
     function burn(uint256 amount) public {
         _burn(msg.sender, amount);
+    }
+
+    function mint(address to, uint256 amount) public isAdmin {
+        _mint(to, amount);
+    }
+
+    function addAdmin(address to) public onlyOwner {
+        admins[to] = true;
+        adminsList.push(to);
+    }
+
+    function removeAdmin(address to) public onlyOwner {
+        admins[to] = false;
+        for (uint256 i = 0; i < adminsList.length; i++) {
+            if (adminsList[i] == to) {
+                delete (adminsList[i]);
+            }
+        }
+    }
+
+    function getAdminsList() public view returns (address[] memory) {
+        return adminsList;
     }
 
     function withdraw(
