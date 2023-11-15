@@ -11,7 +11,6 @@ contract MetafluenceCCIP is
     OwnableUpgradeable
 {
     mapping(address => bool) public admins;
-    address[] public adminsList;
     event Admin(address to, bool status);
 
     modifier isAdmin() {
@@ -26,7 +25,6 @@ contract MetafluenceCCIP is
         __ERC20_init("Metafluence", "METO");
         __Ownable_init();
         _mint(msg.sender, 5_000_000_000 * 10 ** decimals());
-        admins[msg.sender] = true;
     }
 
     function _beforeTokenTransfer(
@@ -45,24 +43,9 @@ contract MetafluenceCCIP is
         _mint(to, amount);
     }
 
-    function addAdmin(address to) public onlyOwner {
-        admins[to] = true;
-        adminsList.push(to);
-        emit Admin(to, true);
-    }
-
-    function removeAdmin(address to) public onlyOwner {
-        admins[to] = false;
-        for (uint256 i = 0; i < adminsList.length; i++) {
-            if (adminsList[i] == to) {
-                delete (adminsList[i]);
-            }
-        }
-        emit Admin(to, false);
-    }
-
-    function getAdminsList() public view returns (address[] memory) {
-        return adminsList;
+    function addAdmin(address to, bool status) public onlyOwner {
+        admins[to] = status;
+        emit Admin(to, status);
     }
 
     function withdraw(

@@ -104,36 +104,6 @@ describe("Metafluence", function () {
       await metoccip.removeAdmin(otherAccount);
       expect(await metoccip.admins(otherAccount)).to.be.false;
     });
-    it("Admins list empty initially", async function () {
-      expect(await metoccip.getAdminsList()).to.be.empty;
-    });
-    it("Admins list not empty", async () => {
-      await metoccip.addAdmin(owner);
-      expect(await metoccip.getAdminsList()).to.be.not.empty;
-    });
-    it("Admins list length should be 2", async function () {
-      await metoccip.addAdmin(owner);
-      await metoccip.addAdmin(otherAccount);
-      const admins = await metoccip.getAdminsList();
-      expect(admins.length).to.be.equal(2);
-    });
-
-    it("Owner in the admin list", async function () {
-      await metoccip.addAdmin(owner);
-      await metoccip.addAdmin(otherAccount);
-      const admins = await metoccip.getAdminsList();
-      expect(admins[0]).to.be.equal(owner.address);
-    });
-    it("Admins index 1 is null", async function () {
-      metoccip.addAdmin(owner);
-      await metoccip.addAdmin(otherAccount);
-      expect(await metoccip.admins(otherAccount)).to.be.true;
-      await metoccip.removeAdmin(otherAccount);
-      expect(await metoccip.admins(otherAccount)).to.be.false;
-      const admins = await metoccip.getAdminsList();
-      expect(admins.length).to.eql(2);
-      expect(admins[1]).to.eq(ethers.ZeroAddress);
-    });
   });
 
   describe("Mint & Burn", function () {
