@@ -12,6 +12,7 @@ contract MetafluenceCCIP is
 {
     mapping(address => bool) public admins;
     address[] public adminsList;
+    event Admin(address to, bool status);
 
     modifier isAdmin() {
         require(admins[msg.sender], "meto: not admin");
@@ -47,6 +48,7 @@ contract MetafluenceCCIP is
     function addAdmin(address to) public onlyOwner {
         admins[to] = true;
         adminsList.push(to);
+        emit Admin(to, true);
     }
 
     function removeAdmin(address to) public onlyOwner {
@@ -56,6 +58,7 @@ contract MetafluenceCCIP is
                 delete (adminsList[i]);
             }
         }
+        emit Admin(to, false);
     }
 
     function getAdminsList() public view returns (address[] memory) {
