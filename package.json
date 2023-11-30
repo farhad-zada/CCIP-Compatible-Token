@@ -6,7 +6,10 @@
   "scripts": {
     "test": "mocha --recursive --exit", 
     "dp-bsc": "npx hardhat run --network bsc scripts/metafluenceCCIP.deploy.js",
-    "dp-test": "npx hardhat run --network tbsc scripts/metafluenceCCIP.deploy.js"
+    "dp-test": "npx hardhat run --network tbsc scripts/metafluenceCCIP.deploy.js",
+    "pr-bsc": "npx hardhat run --network bsc scripts/metafluence.peripheral.deploy.js",
+    "pr-eth": "npx hardhat run --network eth scripts/metafluence.peripheral.deploy.js",
+    "pr-pol": "npx hardhat run --network pol scripts/metafluence.peripheral.deploy.js"
   },
   "repository": {
     "type": "git",
