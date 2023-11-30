@@ -19,5 +19,22 @@ module.exports = {
       chainId: process.env.TBSC_CID * 1,
       accounts: [process.env.PKEY],
     },
+    pol: {
+      url: process.env.POL_RPC,
+      chainId: process.env.POL_CID * 1,
+      accounts: [process.env.PKEY],
+    },
+    eth: {
+      url: process.env.ETH_RPC,
+      chainId: process.env.ETH_CID * 1,
+      accounts: [process.env.PKEY],
+    },
+  },
+  etherscan: {
+    apiKey: {
+      eth: process.env.ETH_APIKEY,
+      bsc: process.env.BSC_APIKEY,
+      pol: process.env.POL_APIKEY,
+    },
   },
 };

@@ -55,3 +55,18 @@ npm run dp-test
 ```shell
 npx hardhat run scripts/metafluenceCCIP.deploy.js
 ```
+
+# Deploy Preipheral Metafluence
+
+Peripheral Metafluence Token does not mint tokens when deployed.
+
+To deploy and also verify on block explorer you need to run below commands for each blockchain network
+
+```shell
+# BNB Smart Chain
+npm run pr-pol
+# Ethereum
+npm run pr-eth
+# Polygon
+npm run pr-bsc
+```
