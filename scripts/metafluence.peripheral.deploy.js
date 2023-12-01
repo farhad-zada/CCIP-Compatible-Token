@@ -1,4 +1,4 @@
-const { ethers } = require("hardhat");
+const { ethers, upgrades } = require("hardhat");
 const hre = require("hardhat");
 
 async function main() {
@@ -6,12 +6,14 @@ async function main() {
     "MetafluencePeripheral"
   );
   console.log("Deploying contract MetafluencePeripheral...");
-  const metoperipheral = await MetafluencePeripheral.deploy();
+  const metoperipheral = await upgrades.deployProxy(MetafluencePeripheral, [], {
+    initializer: "initialize",
+  });
   console.log(
     `Metafluence Peripheral Token deployed at address ${metoperipheral.target}`
   );
   console.log("Waiting for contract to be mined...");
-  await metoperipheral.deploymentTransaction().wait(8);
+  await metoperipheral.deploymentTransaction().wait(10);
 
   await hre.run("verify:verify", {
     address: metoperipheral.target,
